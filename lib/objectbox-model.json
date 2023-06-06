@@ -1,0 +1,119 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:5112606009138662767",
+      "lastPropertyId": "8:4964915402075511305",
+      "name": "Activity",
+      "properties": [
+        {
+          "id": "1:2609281793139281970",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:194391181164271385",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "3:5547315822543538218",
+          "name": "cost",
+          "type": 6
+        },
+        {
+          "id": "4:1185343654908344879",
+          "name": "projectId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:8504012592435988850",
+          "relationTarget": "Project"
+        },
+        {
+          "id": "5:666172893498589213",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "6:3491114767735814989",
+          "name": "startDate",
+          "type": 10
+        },
+        {
+          "id": "7:1718132966359828530",
+          "name": "daysTaken",
+          "type": 6
+        },
+        {
+          "id": "8:4964915402075511305",
+          "name": "remarks",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2563928415631523287",
+      "lastPropertyId": "8:2684881947725564355",
+      "name": "Project",
+      "properties": [
+        {
+          "id": "1:3261265804287046384",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1498354328410644799",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "3:8334122915017147889",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:498781553012346104",
+          "name": "size",
+          "type": 9
+        },
+        {
+          "id": "5:3393344571916945021",
+          "name": "location",
+          "type": 9
+        },
+        {
+          "id": "6:8400093292686550301",
+          "name": "complete",
+          "type": 1
+        },
+        {
+          "id": "7:4178349223921395751",
+          "name": "totalCost",
+          "type": 6
+        },
+        {
+          "id": "8:2684881947725564355",
+          "name": "costSoFar",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:2563928415631523287",
+  "lastIndexId": "1:8504012592435988850",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
