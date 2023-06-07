@@ -31,7 +31,7 @@ class _ProjectDetailState extends State<ProjectDetail> {
   Activity two = Activity(
     title: "Land Tilling", 
     description: "tilling of the land in preparation for the rain and subsequent planting of crops.", 
-    startDate: DateTime(2023, 2, 5),
+    startDate: DateTime(2023, 7, 16),
     cost: 26000,
     daysTaken: 2,
   );

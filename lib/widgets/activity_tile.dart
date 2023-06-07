@@ -89,7 +89,8 @@ class Subtitle extends StatelessWidget {
             subtitle,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
-              decoration: TextDecoration.underline
+              color: Color.fromARGB(255, 122, 122, 7),
+              // decoration: TextDecoration.underline
             ),
           ),
         ),
