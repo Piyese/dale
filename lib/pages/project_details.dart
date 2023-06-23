@@ -1,40 +1,35 @@
+import 'package:dale/objectbox.g.dart';
+import 'package:dale/pages/new_activity.dart';
 import 'package:dale/storeroom/models.dart';
 import 'package:dale/widgets/activity_tile.dart';
 import 'package:dale/widgets/test_formats.dart';
 import 'package:flutter/material.dart';
 
-class Item {
-  String titletext;
-  String expandedText;
-
-  Item({required this.titletext, required this.expandedText});
-}
-
 
 class ProjectDetail extends StatefulWidget {
   final Project project;
+  final Store store;
   
-  const ProjectDetail({super.key, required this.project});
+  const ProjectDetail({super.key, required this.project, required this.store});
 
   @override
   State<ProjectDetail> createState() => _ProjectDetailState();
 }
 
 class _ProjectDetailState extends State<ProjectDetail> {
-  Activity one = Activity(
-    title: "Land Leasing", 
-    description: "Leasing of land from Mr. kaleke(10acres) and Mr. Ominde(5 acres). paid 30000 on site and will add the rest(20000) on friday. paid 5000/acre ", 
-    startDate: DateTime(2023, 2, 5),
-    cost: 10000,
-    remarks: "leasing land during the kiangazi is a way better approach because the owner wako na more njaa so the lease it at a cheaper price than when the demand is high"
-  );
-  Activity two = Activity(
-    title: "Land Tilling", 
-    description: "tilling of the land in preparation for the rain and subsequent planting of crops.", 
-    startDate: DateTime(2023, 7, 16),
-    cost: 26000,
-    daysTaken: 2,
-  );
+  
+  late Stream ac;
+  bool initialized = false;
+
+  @override
+  void initState(){
+    super.initState();
+    setState(() {
+      Box acBox = widget.store.box<Activity>();
+      ac = acBox.query(Activity_.project.equals(widget.project.id)).watch(triggerImmediately: true).map((query) => query.find());
+      initialized = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +79,12 @@ class _ProjectDetailState extends State<ProjectDetail> {
                 const Text("Activities", style: TextStyle(fontWeight: FontWeight.bold),),
                 IconButton(
                     icon: const Icon(Icons.add_circle_rounded,), 
-                    onPressed: () { },
+                    onPressed: () { 
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => NewActivity(store: widget.store, project: widget.project)),
+                      );
+                    },
                 ),
               ],
             ),
@@ -103,12 +103,21 @@ class _ProjectDetailState extends State<ProjectDetail> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: SingleChildScrollView(
-                  child:Column(
-                    children: [
-                      ActivityTile(activity: one,),
-                      ActivityTile(activity: two,),
-                    ],
-                  )
+                  child: initialized ? StreamBuilder(
+                    stream: ac, 
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData){
+                        return Column(
+                          children: List.generate(snapshot.data!.length, (index) => ActivityTile(activity: widget.project.activities[index],),  )
+                        ); 
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ) : const Center(child: Text("Nothing Yet!"))
+                  // child: widget.project.activities.isNotEmpty ? Column(
+                  //   children: List.generate(widget.project.activities.length, (index) => ActivityTile(activity: widget.project.activities[index],))           
+                  // ) : const Center(child: Text("Nothing Yet!",style: TextStyle(color: Colors.white),)),
                 ),
               ),
             ),

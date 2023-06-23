@@ -25,6 +25,18 @@ class Activity {
     this.cost,
     this.daysTaken
   });
+
+  void addCost(int cost) {
+    this.cost = cost;
+  }
+
+  void addDuration(int tt) {
+    daysTaken = tt;
+  }
+  
+  void addRemarks(String rmks) {
+    remarks = rmks;
+  }
 }
 
 @Entity()

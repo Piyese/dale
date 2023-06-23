@@ -1,13 +1,15 @@
 import "dart:math";
 
+import "package:dale/objectbox.g.dart";
 import "package:dale/pages/project_details.dart";
 import "package:dale/storeroom/models.dart";
 import "package:flutter/material.dart";
 
 class ProjectView extends StatelessWidget {
   final Project project;
+  final Store store;
 
-  const ProjectView({super.key, required this.project});
+  const ProjectView({super.key, required this.project, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class ProjectView extends StatelessWidget {
       onTap: (){
         Navigator.push(
           context, 
-          MaterialPageRoute(builder: (context) => ProjectDetail(project: project)),
+          MaterialPageRoute(builder: (context) => ProjectDetail(project: project, store: store,)),
         );
       },
       child: Container(

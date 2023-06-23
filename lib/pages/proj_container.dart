@@ -52,7 +52,7 @@ class _ProjectsContainerState extends State<ProjectsContainer> {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
-                children: List.generate(snapshot.data!.length, (index) => ProjectView(project: snapshot.data![index]))
+                children: List.generate(snapshot.data!.length, (index) => ProjectView(project: snapshot.data![index], store: widget.store,),  )
               ); 
             } else {
               return const Center(child: CircularProgressIndicator());
